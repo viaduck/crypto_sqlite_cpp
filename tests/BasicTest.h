@@ -5,7 +5,10 @@
 #include <gtest/gtest.h>
 
 class BasicTest : public ::testing::Test {
-
+    virtual void SetUp() override {
+        std::remove("test.db");
+        std::remove("test.db.keyfile");
+    }
 };
 
 

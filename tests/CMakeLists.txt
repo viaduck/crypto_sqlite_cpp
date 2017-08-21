@@ -9,4 +9,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(CryptoSQLiteppTests ${CSP_TEST_FILES})
 
 # link against google test, cryptoSQLite and sqlite_modern_cpp
-target_link_libraries(CryptoSQLiteppTests dl gtest_main cryptosqlite SQLiteModernCPP)
+target_link_libraries(CryptoSQLiteppTests gtest_main cryptosqlite SQLiteModernCPP)
