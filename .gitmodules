@@ -1,9 +1,6 @@
 [submodule "external/cryptoSQLite"]
 	path = external/cryptoSQLite
-	url = git@gl.viaduck.org:viaduck/cryptoSQLite.git
+	url = ../../viaduck/cryptoSQLite.git
 [submodule "external/sqlite_modern_cpp"]
 	path = external/sqlite_modern_cpp
-	url = git@gl.viaduck.org:viaduck/sqlite_modern_cpp.git
-[submodule "external/googletest"]
-	path = external/googletest
-	url = https://github.com/google/googletest.git
+	url = ../../viaduck/sqlite_modern_cpp.git
