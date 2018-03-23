@@ -30,5 +30,5 @@ if (GTEST_FOUND)
     add_executable(CryptoSQLiteppTests ${CSP_TEST_FILES})
 
     # link against google test, cryptoSQLite and sqlite_modern_cpp
-    target_link_libraries(CryptoSQLiteppTests ${GTEST_BOTH_LIBRARIES} pthread cryptosqlite SQLiteModernCPP)
+    target_link_libraries(CryptoSQLiteppTests ${GTEST_BOTH_LIBRARIES} pthread cryptosqlite sqlite_modern_cpp)
 endif()

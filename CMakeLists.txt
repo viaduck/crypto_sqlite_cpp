@@ -29,7 +29,8 @@ if (NOT TARGET cryptosqlite)
 endif()
 
 # add target if needed
-if (NOT TARGET SQLiteModernCPP)
+if (NOT TARGET sqlite_modern_cpp)
+    set(HUNTER_ENABLED OFF)
     add_subdirectory(external/sqlite_modern_cpp)
 endif()
 

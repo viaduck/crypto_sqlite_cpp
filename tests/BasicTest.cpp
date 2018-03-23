@@ -18,10 +18,10 @@
  */
 
 #include <cryptosqlite/encryption/PlaintextCrypt.h>
+#include <cryptosqlite/cryptosqlite.h>
+#include <cryptosqlite/Codec.h>
+#include <sqlite_modern_cpp/cryptosqlite.h>
 #include "BasicTest.h"
-#include "cryptosqlite/cryptosqlite.h"
-#include "cryptosqlite/Codec.h"
-#include "sqlite_modern_cpp/cryptosqlitepp.h"
 
 TEST_F(BasicTest, testOpenDB) {
     Codec::setCryptoFactory([] (std::unique_ptr<IDataCrypt> &crypt) {
