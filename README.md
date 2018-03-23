@@ -1,11 +1,11 @@
 # cryptoSQLitepp
-Combines cryptoSQLite and sqlite_modern_cpp into one CMake file. Allows
-the comfortable usage of SQLite3 using sqlite_modern_cpp with the addition of 
-encryption using cryptoSQLite.
+Combines `cryptoSQLite` and `sqlite_modern_cpp` into one CMakeLists. Allows
+the comfortable usage of SQLite3 using `sqlite_modern_cpp` with the addition of 
+encryption using `cryptoSQLite`.
 
 ## Features
-* 'cryptoSQLite' encryption features
-* 'sqlite_modern_cpp' usage features
+* `cryptoSQLite` encryption features
+* `sqlite_modern_cpp` usage features
 
 ## Setup
 1. Initialize Git submodules: `git submodule update --init --recursive`
