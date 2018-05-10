@@ -16,8 +16,7 @@
 # along with cryptoSQLitepp.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# find system gtest
-find_package(GTest)
+include(FindOrBuildGTest)
 
 if (GTEST_FOUND)
     # collect test files
@@ -27,8 +26,8 @@ if (GTEST_FOUND)
     include_directories(${GTEST_INCLUDE_DIRS})
 
     # set up exec target
-    add_executable(CryptoSQLiteppTests ${CSP_TEST_FILES})
+    add_executable(CryptoSQLitepp_Test ${CSP_TEST_FILES})
 
     # link against google test, cryptoSQLite and sqlite_modern_cpp
-    target_link_libraries(CryptoSQLiteppTests ${GTEST_BOTH_LIBRARIES} pthread cryptosqlite sqlite_modern_cpp)
+    target_link_libraries(CryptoSQLitepp_Test ${GTEST_BOTH_LIBRARIES} pthread cryptosqlite sqlite_modern_cpp)
 endif()

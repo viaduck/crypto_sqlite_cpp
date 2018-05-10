@@ -1,0 +1,95 @@
+image: viaduck/ci
+
+stages:
+    - build
+    - test
+    
+variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    ANDROID_PLATFORM: "android-26"
+    ANDROID_NDK: "/android/ndk"
+    
+build:linux-x86_64:
+    stage: build
+    script:
+        - mkdir build-linux-x86_64
+        - cd build-linux-x86_64
+        - cmake -GNinja ../ -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja
+    artifacts:
+        expire_in: 2h                   # do not pollute disk
+        paths:
+        - build-linux-x86_64/
+        
+test:linux-x86_64:
+    variables:
+        GIT_STRATEGY: none
+    stage: test
+    script:
+        - cd /tmp
+        - $OLDPWD/build-linux-x86_64/test/CryptoSQLitepp_Test
+    dependencies:
+    - build:linux-x86_64
+
+
+build:windows-x86_64:
+    image: viaduck/ci:mingw
+    stage: build
+    script:
+        - mkdir build-windows-x86_64
+        - cd build-windows-x86_64
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=x86_64-w64-mingw32 -DCMAKE_TOOLCHAIN_FILE=../external/icu-cmake/cmake-modules/toolchains/mingw64-x86_64.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja
+        - peldd -p "external/cryptoSQLite/external/icu-cmake/icu_pre-prefix/src/icu_pre/lib" test/CryptoSQLitepp_Test.exe | grep -vE '\.exe$' | xargs cp -t .
+    artifacts:
+        expire_in: 2h                   # do not pollute disk
+        paths:
+        - build-windows-x86_64/
+        
+test:windows-x86_64:
+    variables:
+      GIT_STRATEGY: none
+    script:
+        - cd build-windows-x86_64
+        - test\CryptoSQLitepp_Test.exe             # runs gtest target
+    stage: test
+    dependencies:
+    - build:windows-x86_64
+    tags:
+    - windows
+
+build:android-arm64-v8a:
+    image: viaduck/ci:android
+    stage: build
+    script:
+        - mkdir build-android-arm64-v8a
+        - cd build-android-arm64-v8a
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=arm64-v8a-android -DANDROID_PLATFORM=$ANDROID_PLATFORM -DANDROID_ABI=arm64-v8a -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_shared -DANDROID_NDK=$ANDROID_NDK -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja
+        
+build:android-armeabi-v7a:
+    image: viaduck/ci:android
+    stage: build
+    script:
+        - mkdir build-android-armeabi-v7a
+        - cd build-android-armeabi-v7a
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=armeabi-v7a-android -DANDROID_PLATFORM=$ANDROID_PLATFORM -DANDROID_ABI=armeabi-v7a -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_shared -DANDROID_NDK=$ANDROID_NDK -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja
+        
+build:android-x86:
+    image: viaduck/ci:android
+    stage: build
+    script:
+        - mkdir build-android-x86
+        - cd build-android-x86
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=x86-android -DANDROID_PLATFORM=$ANDROID_PLATFORM -DANDROID_ABI=x86 -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_shared -DANDROID_NDK=$ANDROID_NDK -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja
+        
+build:android-x86_64:
+    image: viaduck/ci:android
+    stage: build
+    script:
+        - mkdir build-android-x86_64
+        - cd build-android-x86_64
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=x86_64-android -DANDROID_PLATFORM=$ANDROID_PLATFORM -DANDROID_ABI=x86_64 -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_shared -DANDROID_NDK=$ANDROID_NDK -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - ninja

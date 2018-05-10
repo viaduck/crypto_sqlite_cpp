@@ -19,6 +19,9 @@
 cmake_minimum_required(VERSION 3.1)
 project(cryptoSQLitepp)
 
+# set cmake module path
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/external/cryptoSQLite/external/securememory/cmake-modules")
+
 # enable and require c++14 support
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -35,4 +38,4 @@ if (NOT TARGET sqlite_modern_cpp)
 endif()
 
 # add tests
-add_subdirectory(tests)
+add_subdirectory(test)
