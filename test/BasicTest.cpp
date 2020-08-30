@@ -17,14 +17,13 @@
  * along with cryptoSQLitepp.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <cryptosqlite/encryption/PlaintextCrypt.h>
+#include <cryptosqlite/crypto/PlaintextCrypt.h>
 #include <cryptosqlite/cryptosqlite.h>
-#include <cryptosqlite/Codec.h>
 #include <sqlite_modern_cpp/cryptosqlite.h>
 #include "BasicTest.h"
 
 TEST_F(BasicTest, testOpenDB) {
-    Codec::setCryptoFactory([] (std::unique_ptr<IDataCrypt> &crypt) {
+    cryptosqlite::setCryptoFactory([] (std::unique_ptr<IDataCrypt> &crypt) {
         crypt.reset(new PlaintextCrypt());
     });
 
