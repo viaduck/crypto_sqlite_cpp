@@ -1,4 +1,4 @@
-# Copyright (c) 2017-2018 The ViaDuck Project
+# Copyright (c) 2017-2021 The ViaDuck Project
 #
 # This file is part of cryptoSQLitepp.
 #
@@ -27,6 +27,9 @@ if (GTEST_FOUND)
 
     # set up exec target
     add_executable(CryptoSQLitepp_Test ${CSP_TEST_FILES})
+
+    # require and enable c++14 support
+    set_target_properties(CryptoSQLitepp_Test PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED YES)
 
     # link against google test, cryptoSQLite and sqlite_modern_cpp
     target_link_libraries(CryptoSQLitepp_Test ${GTEST_BOTH_LIBRARIES} cryptosqlite sqlite_modern_cpp)
