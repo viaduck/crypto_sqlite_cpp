@@ -25,7 +25,7 @@ build:linux-x86_64:
 lint:linux-x86_64:
     stage: lint
     script:
-        - vd-lint cryptoSQLitepp $PWD
+        - vd-lint CryptoSQLiteCPP $PWD
     needs:
         - job: build:linux-x86_64
           artifacts: false
@@ -36,7 +36,7 @@ test:linux-x86_64:
     stage: test
     script:
         - cd /tmp
-        - $OLDPWD/build-linux-x86_64/test/CryptoSQLitepp_Test
+        - $OLDPWD/build-linux-x86_64/test/crypto_sqlite_cpp_test
     needs:
         - build:linux-x86_64
 
@@ -49,9 +49,9 @@ build:windows-x86_64:
         - update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
         - mkdir build-windows-x86_64
         - cd build-windows-x86_64
-        - cmake -GNinja ../ -DPREBUILT_BRANCH=x86_64-w64-mingw32 -DCMAKE_TOOLCHAIN_FILE=../external/cryptoSQLite/external/icu-cmake/cmake-modules/toolchains/mingw64-x86_64.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
+        - cmake -GNinja ../ -DPREBUILT_BRANCH=x86_64-w64-mingw32 -DCMAKE_TOOLCHAIN_FILE=../external/crypto_sqlite/external/icu-cmake/cmake-modules/toolchains/mingw64-x86_64.cmake -DGTEST_SRC_DIR=/usr/src/googletest/
         - ninja
-        - peldd -p "external/cryptoSQLite/external/icu-cmake/icu_pre-prefix/src/icu_pre/lib" test/CryptoSQLitepp_Test.exe | grep -vE '\.exe$' | xargs cp -t .
+        - peldd -p "external/crypto_sqlite/external/icu-cmake/icu_pre-prefix/src/icu_pre/lib" test/crypto_sqlite_cpp_test.exe | grep -vE '\.exe$' | xargs cp -t .
     artifacts:
         expire_in: 2h                   # do not pollute disk
         paths:
@@ -62,7 +62,7 @@ test:windows-x86_64:
       GIT_STRATEGY: none
     script:
         - cd build-windows-x86_64
-        - test\CryptoSQLitepp_Test.exe             # runs gtest target
+        - test\crypto_sqlite_cpp_test.exe             # runs gtest target
     stage: test
     needs:
         - build:windows-x86_64

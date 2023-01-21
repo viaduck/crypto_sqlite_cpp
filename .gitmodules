@@ -1,6 +1,6 @@
-[submodule "external/cryptoSQLite"]
-	path = external/cryptoSQLite
-	url = ../../viaduck/cryptoSQLite.git
 [submodule "external/sqlite_modern_cpp"]
 	path = external/sqlite_modern_cpp
 	url = ../../viaduck/sqlite_modern_cpp.git
+[submodule "external/crypto_sqlite"]
+	path = external/crypto_sqlite
+	url = ../../viaduck/crypto_sqlite.git

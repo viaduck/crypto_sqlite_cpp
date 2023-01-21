@@ -1,16 +1,16 @@
-# cryptoSQLitepp
-Combines `cryptoSQLite` and `sqlite_modern_cpp` into one CMakeLists. Allows
+# CryptoSQLiteCPP
+Combines `CryptoSQLite` and `sqlite_modern_cpp` into one CMakeLists. Allows
 the comfortable usage of SQLite3 using `sqlite_modern_cpp` with the addition of 
-encryption using `cryptoSQLite`.
+encryption using `CryptoSQLite`.
 
 ## Features
-* `cryptoSQLite` encryption features
+* `CryptoSQLite` encryption features
 * `sqlite_modern_cpp` usage features
 
 ## Setup
 1. Initialize Git submodules: `git submodule update --init --recursive`
-2. Link against the `cryptosqlite` and `sqlite_modern_cpp` CMake library targets.
-3. Implement `IDataCrypt` per `cryptoSQLite` instructions.
+2. Link against the `crypto_sqlite` and `sqlite_modern_cpp` CMake library targets.
+3. Implement `IDataCrypt` per `CryptoSQLite` instructions.
 
 ## Usage
 See [BasicTest.cpp](tests/BasicTest.cpp) for a usage example.
@@ -18,14 +18,14 @@ See [BasicTest.cpp](tests/BasicTest.cpp) for a usage example.
 ## Combined Projects
 * [sqlite_modern_cpp](https://github.com/viaduck/sqlite_modern_cpp):
 Modern SQLite3 wrapper
-* [cryptoSQLite](https://github.com/viaduck/cryptoSQLite): SQLite3 encryption
+* [CryptoSQLite](https://github.com/viaduck/crypto_sqlite): SQLite3 encryption
 
 ## Licensing
 This library is subject to the GNU Lesser General Public License v3.0 (GNU
 LGPLv3).
 
 ```
-Copyright (C) 2017-2018  The ViaDuck Project
+Copyright (C) 2017-2023  The ViaDuck Project
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
