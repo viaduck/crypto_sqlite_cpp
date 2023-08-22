@@ -1,4 +1,4 @@
-# Copyright (c) 2017-2021 The ViaDuck Project
+# Copyright (c) 2017-2023 The ViaDuck Project
 #
 # This file is part of CryptoSQLiteCPP.
 #
@@ -32,7 +32,7 @@ if (GTEST_FOUND)
     set_target_properties(crypto_sqlite_cpp_test PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED YES)
 
     # link against google test, crypto_sqlite and sqlite_modern_cpp
-    target_link_libraries(crypto_sqlite_cpp_test ${GTEST_BOTH_LIBRARIES} crypto_sqlite sqlite_modern_cpp)
+    target_link_libraries(crypto_sqlite_cpp_test ${GTEST_TARGET} crypto_sqlite sqlite_modern_cpp)
     if (NOT ANDROID)
         target_link_libraries(crypto_sqlite_cpp_test pthread)
     endif()
