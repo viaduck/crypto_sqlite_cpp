@@ -16,7 +16,7 @@
 # along with CryptoSQLiteCPP.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.1...3.27)
 project(crypto_sqlite_cpp)
 
 # set cmake module path
