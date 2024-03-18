@@ -19,6 +19,9 @@
 cmake_minimum_required(VERSION 3.1...3.27)
 project(crypto_sqlite_cpp)
 
+# option
+option(CRYPTO_SQLITE_CPP_BUILD_TESTS "Enable test compilation for crypto_sqlite_cpp" OFF)
+
 # set cmake module path
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/external/crypto_sqlite/external/secure_memory/cmake-modules")
 
@@ -34,4 +37,6 @@ if (NOT TARGET sqlite_modern_cpp)
 endif()
 
 # add tests
-add_subdirectory(test)
+if (CRYPTO_SQLITE_CPP_BUILD_TESTS)
+    add_subdirectory(test)
+endif()
